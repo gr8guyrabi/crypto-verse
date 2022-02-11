@@ -1,54 +1,37 @@
 import React from 'react';
 import millify from 'millify'
-import { Collapse, Row, Col, Typography, Avatar } from 'antd'
+import { Collapse, Row, Col, Typography, Avatar, Card } from 'antd'
 import HTMLReactParser from 'html-react-parser'
 
 import { useGetExchangesQuery } from '../services/cryptoCoinApi'
 
 import { Loader } from './'
 
-const { Text } = Typography
+const { Text, Title } = Typography
 const { Panel } = Collapse
 
 const Exchanges = () => {
-	// const { data, isFetching } = useGetExchangesQuery()
-	// const exchangesList = data?.data?.exchanges
-
+	const { data, isFetching, error } = useGetExchangesQuery()
+	
 	const demoImage = 'https://www.bing.com/th?id=OVFT.mpzuVZnv8dwIMRfQGPbOPC&pid=News'
-
-	const exchangesList = [
-		{
-			uuid: '123jk23',
-			name: 'Bitcoin',
-			rank: '1',
-			iconUrl: demoImage,
-			volume: 234234,
-			numberOfMarkets: 123213,
-			marketShare: 12234,
-			description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis non praesentium dolores recusandae facilis, officiis similique dolorum, voluptates beatae nam placeat soluta illo excepturi dolor tempore. Sit alias nulla est?'
-		},
-		{
-			uuid: '23423',
-			name: 'Bitcoin',
-			rank: '1',
-			iconUrl: demoImage,
-			volume: 234234,
-			numberOfMarkets: 123213,
-			marketShare: 12234,
-			description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis non praesentium dolores recusandae facilis, officiis similique dolorum, voluptates beatae nam placeat soluta illo excepturi dolor tempore. Sit alias nulla est?'
-		},
-		{
-			uuid: '456456',
-			name: 'Bitcoin',
-			rank: '1',
-			iconUrl: demoImage,
-			volume: 234234,
-			numberOfMarkets: 123213,
-			marketShare: 12234,
-			description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis non praesentium dolores recusandae facilis, officiis similique dolorum, voluptates beatae nam placeat soluta illo excepturi dolor tempore. Sit alias nulla est?'
-		},
-	]
-	// if (isFetching) return <Loader />
+	if (isFetching) return <Loader />
+	if (error) return (
+		<div className='not-found-404'>
+			<Card>
+				<div className="not-found-404-content">
+					<img src={demoImage} alt="404" />
+					<Title>
+						404 
+					</Title>
+					<Title level={1}>
+						Page Not Found!!!
+					</Title>
+				</div>
+					
+			</Card>
+		</div>
+	)
+	const exchangesList = data?.data?.exchanges
 	
 	return (
         <>
