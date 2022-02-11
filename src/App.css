@@ -45,6 +45,13 @@ a:hover {
     width: 100%;
 }
 
+.loader{
+    height: 81vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .logo {
     margin: 0 0 0 15px;
 }
@@ -59,7 +66,7 @@ a:hover {
 }
 
 .menu-control-container{
-    display: none;
+    display: none !important;
     position: absolute !important;
     right: 10px !important;
     top: 25px !important;
@@ -402,3 +409,10 @@ a:hover {
 }
 
 /* LineChart End */
+
+/* Exchanges Start */
+.exchange-image{
+    margin: 0px 10px !important;
+}
+
+/* Exchanges End */

@@ -5,6 +5,8 @@ import { Card, Row, Col, Input } from 'antd'
 
 import { useGetCryptosQuery } from '../services/cryptoCoinApi'
 
+import { Loader } from './'
+
 const Cryptocurrencies = ({ simplified }) => {
   const count = simplified ? 10 : 100
   const { data: cryptosList, error, isFetching } = useGetCryptosQuery(count)
@@ -16,7 +18,7 @@ const Cryptocurrencies = ({ simplified }) => {
     setCryptos(filteredData)
   }, [cryptosList, searchTerm])
 
-  if (isFetching) return 'Loading...'
+  if (isFetching) return <Loader />
 
   return (
         <>
